@@ -43,7 +43,7 @@ In a **Single-Table Design**, all entities (e.g., organizations, departments, em
 ```json
 {
         "organization": {
-            "name": "CodexOrg",
+            "name": "CodexCorp",
             "location": "Bangalore",
             "founded": 1998,
             "departments": [
@@ -52,7 +52,7 @@ In a **Single-Table Design**, all entities (e.g., organizations, departments, em
                     "manager": {
                         "name": "Johnson",
                         "id": 101,
-                        "email": "johnson@codexorg.com",
+                        "email": "johnson@CodexCorp.com",
                         "experience": "15 years",
                         "certifications": ["PMP", "AWS Certified Solutions Architect"]
                     },
@@ -82,7 +82,7 @@ In a **Single-Table Design**, all entities (e.g., organizations, departments, em
                     "manager": {
                         "name": "Lee",
                         "id": 103,
-                        "email": "lee@codexorg.com",
+                        "email": "lee@CodexCorp.com",
                         "experience": "10 years",
                         "certifications": ["Google Ads Certified", "HubSpot Inbound Marketing"]
                     }
@@ -94,7 +94,7 @@ In a **Single-Table Design**, all entities (e.g., organizations, departments, em
 Consider an organization with departments, projects, employees, and managers. In a single-table design, you can store all these entities in one table, using composite keys to represent relationships.
 
 # Primary Key Design
-- **Partition Key (PK):** `OrganizationID` (e.g., `ORG#CodexOrg`)
+- **Partition Key (PK):** `OrganizationID` (e.g., `ORG#CodexCorp`)
 - **Sort Key (SK):** Composite key to represent the hierarchy (e.g., `DEPT#Engineering`, `PROJ#AI Development`, `EMP#John`, etc.)
 
 
@@ -102,35 +102,35 @@ Consider an organization with departments, projects, employees, and managers. In
 
 | PK                | SK                     | Attributes                                      |
 |------------------|----------------------|------------------------------------------------|
-| ORG#CodexOrg    | METADATA              | name, location, founded                        |
-| ORG#CodexOrg    | DEPT#Engineering      | name, manager (nested object), projects (list of project IDs) |
-| ORG#CodexOrg    | DEPT#Marketing        | name, manager (nested object)                  |
-| ORG#CodexOrg    | PROJ#AI Development   | name, budget, deadline, employees (list of employee IDs) |
-| ORG#CodexOrg    | EMP#John Doe          | id, name, role, tasks (list of tasks)         |
-| ORG#CodexOrg    | MGR#Johnson     | id, name, email, experience, certifications    |
-| ORG#CodexOrg    | MGR#Lee         | id, name, email, experience, certifications    |
+| ORG#CodexCorp    | METADATA              | name, location, founded                        |
+| ORG#CodexCorp    | DEPT#Engineering      | name, manager (nested object), projects (list of project IDs) |
+| ORG#CodexCorp    | DEPT#Marketing        | name, manager (nested object)                  |
+| ORG#CodexCorp    | PROJ#AI Development   | name, budget, deadline, employees (list of employee IDs) |
+| ORG#CodexCorp    | EMP#John Doe          | id, name, role, tasks (list of tasks)         |
+| ORG#CodexCorp    | MGR#Johnson     | id, name, email, experience, certifications    |
+| ORG#CodexCorp    | MGR#Lee         | id, name, email, experience, certifications    |
 
 This design allows you to fetch all related data (e.g., all projects in a department) with a single query.
 
 ## Access Patterns
 
 ### Get Organization Metadata
-Query: PK = ORG#CodexOrg AND SK = METADATA
+Query: PK = ORG#CodexCorp AND SK = METADATA
 
 ### Get All Departments
-Query: PK = ORG#CodexOrg AND SK BEGINS_WITH DEPT#
+Query: PK = ORG#CodexCorp AND SK BEGINS_WITH DEPT#
 
 ### Get a Specific Department (e.g., Engineering)
-Query: PK = ORG#CodexOrg AND SK = DEPT#Engineering
+Query: PK = ORG#CodexCorp AND SK = DEPT#Engineering
 
 ### Get All Projects in a Department
-Query: PK = ORG#CodexOrg AND SK BEGINS_WITH PROJ#
+Query: PK = ORG#CodexCorp AND SK BEGINS_WITH PROJ#
 
 ### Get All Employees in a Project
-Query: PK = ORG#CodexOrg AND SK BEGINS_WITH EMP#
+Query: PK = ORG#CodexCorp AND SK BEGINS_WITH EMP#
 
 ### Get Manager Details
-Query: PK = ORG#CodexOrg AND SK BEGINS_WITH MGR#
+Query: PK = ORG#CodexCorp AND SK BEGINS_WITH MGR#
 
 ## Multiple-Table Design: The RDBMS Hangover
 

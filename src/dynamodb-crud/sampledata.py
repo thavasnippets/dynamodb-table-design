@@ -1,6 +1,6 @@
 data = {
     "organization": {
-        "name": "CodexOrg",
+        "name": "CodexCorp",
         "location": "Bangalore",
         "founded": 1998,
         "departments": [
@@ -9,7 +9,7 @@ data = {
                 "manager": {
                     "name": "Johnson",
                     "id": 101,
-                    "email": "johnson@codexorg.com",
+                    "email": "johnson@CodexCorp.com",
                     "experience": "15 years",
                     "certifications": ["PMP", "AWS Certified Solutions Architect"]
                 },
@@ -39,7 +39,7 @@ data = {
                 "manager": {
                     "name": "Lee",
                     "id": 103,
-                    "email": "lee@codexorg.com",
+                    "email": "lee@CodexCorp.com",
                     "experience": "10 years",
                     "certifications": ["Google Ads Certified", "HubSpot Inbound Marketing"]
                 }

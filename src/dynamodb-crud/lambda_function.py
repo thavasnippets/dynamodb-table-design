@@ -12,7 +12,7 @@ def lambda_handler(event, context):
         insert_sample_data(data=data)
 
         # Example usage of query methods
-        org_id = "ORG#CodexOrg"
+        org_id = "ORG#CodexCorp"
 
         # Get Organization Metadata
         org_metadata = get_organization_metadata(org_id)

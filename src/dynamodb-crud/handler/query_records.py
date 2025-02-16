@@ -8,7 +8,7 @@ table = dynamodb.Table(os.getenv("DYNAMODB_TABLE"))
 
 
 def get_organization_metadata(org_id):
-    """Get Organization Metadata: PK = ORG#CodexOrg AND SK = METADATA"""
+    """Get Organization Metadata: PK = ORG#CodexCorp AND SK = METADATA"""
     response = table.get_item(
         Key={
             "PK": org_id,
@@ -19,7 +19,7 @@ def get_organization_metadata(org_id):
 
 
 def get_all_departments(org_id):
-    """Get All Departments: PK = ORG#CodexOrg AND SK BEGINS_WITH DEPT#"""
+    """Get All Departments: PK = ORG#CodexCorp AND SK BEGINS_WITH DEPT#"""
     response = table.query(
         KeyConditionExpression="PK = :pk AND begins_with(SK, :sk)",
         ExpressionAttributeValues={
@@ -31,7 +31,7 @@ def get_all_departments(org_id):
 
 
 def get_department(org_id, dept_name):
-    """Get a Specific Department: PK = ORG#CodexOrg AND SK = DEPT#Engineering"""
+    """Get a Specific Department: PK = ORG#CodexCorp AND SK = DEPT#Engineering"""
     response = table.get_item(
         Key={
             "PK": org_id,
@@ -42,7 +42,7 @@ def get_department(org_id, dept_name):
 
 
 def get_all_projects(org_id):
-    """Get All Projects: PK = ORG#CodexOrg AND SK BEGINS_WITH PROJ#"""
+    """Get All Projects: PK = ORG#CodexCorp AND SK BEGINS_WITH PROJ#"""
     response = table.query(
         KeyConditionExpression="PK = :pk AND begins_with(SK, :sk)",
         ExpressionAttributeValues={
@@ -54,7 +54,7 @@ def get_all_projects(org_id):
 
 
 def get_all_employees(org_id):
-    """Get All Employees: PK = ORG#CodexOrg AND SK BEGINS_WITH EMP#"""
+    """Get All Employees: PK = ORG#CodexCorp AND SK BEGINS_WITH EMP#"""
     response = table.query(
         KeyConditionExpression="PK = :pk AND begins_with(SK, :sk)",
         ExpressionAttributeValues={
@@ -66,7 +66,7 @@ def get_all_employees(org_id):
 
 
 def get_all_managers(org_id):
-    """Get Manager Details: PK = ORG#CodexOrg AND SK BEGINS_WITH MGR#"""
+    """Get Manager Details: PK = ORG#CodexCorp AND SK BEGINS_WITH MGR#"""
     response = table.query(
         KeyConditionExpression="PK = :pk AND begins_with(SK, :sk)",
         ExpressionAttributeValues={
